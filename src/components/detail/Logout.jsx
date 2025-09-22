@@ -12,7 +12,7 @@ const Logout = ({ setIsLoggingOut, isLoggingOut }) => {
     }
   };
   return (
-    <div className="bg-zinc-700 flex p-5 px-10 rounded-xl">
+    <div className="bg-zinc-700 flex p-5 px-10 rounded-xl border-1 border-zinc-50/20 shadow-2xl">
       <div>
         <p className="text-2xl mt-2">Are you sure you want to Signout?</p>
       </div>
@@ -26,7 +26,7 @@ const Logout = ({ setIsLoggingOut, isLoggingOut }) => {
           Cancel
         </button>
         <button
-          className="hover:bg-zinc-50 hover:text-zinc-950 text-xl rounded-xl p-3 cursor-pointer bg-zinc-400 text-zinc-50"
+          className="hover:bg-zinc-50 hover:text-zinc-950 text-xl rounded-xl p-3 cursor-pointer bg-zinc-400 text-zinc-50 duration-300"
           onClick={handleLogout}>
           Signout
         </button>

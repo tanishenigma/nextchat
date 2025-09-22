@@ -29,7 +29,6 @@ const Chat = () => {
   };
   return (
     <div className="flex-2 flex flex-col border-x  border-x-zinc-700">
-      InfoSection
       <div className="flex justify-between items-center px-5 pb-2 border-b border-b-zinc-700">
         <div className="flex items-center gap-x-2">
           <Image
