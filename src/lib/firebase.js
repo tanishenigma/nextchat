@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  apiKey: "AIzaSyD3cCk8tG3p4-NPsRIZl6zm7eRMVNN_vkA",
   authDomain: "cosmichat-enigma.firebaseapp.com",
   projectId: "cosmichat-enigma",
   storageBucket: "cosmichat-enigma.firebasestorage.app",

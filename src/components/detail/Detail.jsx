@@ -1,14 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import {
-  ArrowUp,
-  BellOff,
-  ChevronDown,
-  ChevronUp,
-  Download,
-  UserX,
-} from "lucide-react";
-const Detail = () => {
+import { BellOff, ChevronDown, ChevronUp, Download, UserX } from "lucide-react";
+
+const Detail = ({ isLoggingOut, setIsLoggingOut }) => {
   return (
     <div className="flex-1 flex flex-col h-full">
       {/* {USERINFO} */}
@@ -129,8 +123,11 @@ const Detail = () => {
       {/* {Logout} */}
 
       <div className="flex justify-center">
-        {" "}
-        <button className="relative cursor-pointer bg-sky-500/20 transition-colors duration-200 ease-in-out hover:bg-sky-500/50 rounded-md p-2 px-8  m-2">
+        <button
+          className="relative cursor-pointer bg-sky-500/20 transition-colors duration-200 ease-in-out hover:bg-sky-500/50 rounded-md p-2 px-8  m-2"
+          onClick={(e) => {
+            setIsLoggingOut(!isLoggingOut);
+          }}>
           Log Out
         </button>
       </div>
