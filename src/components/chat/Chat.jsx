@@ -13,19 +13,41 @@ import {
 } from "lucide-react";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  onSnapshot,
+} from "firebase/firestore";
+import { auth, db } from "@/lib/firebase";
+import { useAuthContext } from "@/app/Contexts/useAuthContext";
 
 const Chat = () => {
   const [showPicker, setShowPicker] = useState(false);
-  const [typing, SetTyping] = useState(true);
   const [message, setMessage] = useState("");
-
   const endRef = useRef(null);
+  const { user, loading } = useAuthContext();
+
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
   const handleEmojiSelect = (emoji) => {
     setMessage((prev) => prev + emoji.native);
+  };
+
+  const messageRef = collection(db, "chats"); //since there are many collections in our database so we make a reference to the collection that we will be using
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (message == "" || !user) return;
+    await addDoc(messageRef, {
+      text: message,
+      createdAt: serverTimestamp(),
+      user: user.displayName,
+      uid: user.uid,
+    });
+    setMessage("");
   };
   return (
     <div className="flex-2 flex flex-col border-x  border-x-zinc-700">
@@ -156,7 +178,9 @@ const Chat = () => {
         <div ref={endRef}></div>
       </div>
       {/* Input Section */}
-      <div className="flex items-center justify-between px-5 mt-auto cursor-pointer">
+      <form
+        className="flex items-center justify-between px-5 mt-auto cursor-pointer shadow-[0_-4px_6px_rgba(0,0,0,0.1)] pt-2 "
+        onSubmit={handleSubmit}>
         <div className="flex gap-x-2  items-center">
           <ImageIcon className="" />
           <Camera className="" />
@@ -167,7 +191,7 @@ const Chat = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full bg-zinc-700 rounded-xl p-2 text-zinc-400 border-none outline-none focus:outline-none"
+            className="w-full bg-zinc-700 rounded-xl p-2 text-zinc-200 border-none outline-none focus:outline-none"
             placeholder="Type a message"
           />
         </div>
@@ -189,17 +213,17 @@ const Chat = () => {
               </div>
             )}
           </div>{" "}
-          {typing ? (
-            <div className="bg-sky-500 rounded-full p-2">
+          {message ? (
+            <button className="bg-sky-500 rounded-full p-2 cursor-pointer duration-300">
               <SendHorizonal />
-            </div>
+            </button>
           ) : (
-            <div className=" rounded-full p-2">
+            <button className=" rounded-full p-2 cursor-pointer duration-300">
               <SendHorizonal />
-            </div>
+            </button>
           )}
         </div>
-      </div>
+      </form>
     </div>
   );
 };

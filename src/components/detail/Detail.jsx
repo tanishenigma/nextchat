@@ -19,15 +19,15 @@ const Detail = ({ isLoggingOut, setIsLoggingOut }) => {
           <span className="text-sm text-zinc-500">
             Lorem ipsum, dolor sit amet
           </span>
-        </div>{" "}
-        <div className="flex">
-          <div className="flex gap-x-2 relative cursor-pointer bg-red-500/20 transition-colors duration-200 ease-in-out hover:bg-red-500/50 rounded-md p-2 px-10 m-2 ">
+        </div>
+        <div className="flex gap-x-5  mt-4">
+          <div className="flex justify-center items-center gap-x-1 relative cursor-pointer bg-red-500/20 transition-colors duration-200 ease-in-out hover:bg-red-500/50 rounded-md  py-4 px-2 not-first-of-type:px-10">
             <UserX />
-            <button className="">Block User</button>
+            <button className="px-2 cursor-pointer">Block User</button>
           </div>
-          <div className="flex gap-x-2 relative cursor-pointer bg-yellow-500/20 transition-colors duration-200 ease-in-out hover:bg-yellow-500/50 rounded-md p-2 px-10 m-2 ">
+          <div className="flex justify-center items-center gap-x-1 relative cursor-pointer bg-yellow-500/20 transition-colors duration-200 ease-in-out hover:bg-yellow-500/50 rounded-md  py-4 px-2 not-first-of-type:px-10">
             <BellOff />
-            <button className="">Mute</button>
+            <button className="px-2 cursor-pointer">Mute</button>
           </div>
         </div>
       </div>

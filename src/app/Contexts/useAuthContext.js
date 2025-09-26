@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+"use client";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-export const useAuth = () => {
+const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,5 +18,13 @@ export const useAuth = () => {
     return () => unsubscribe();
   }, []);
 
-  return { user, loading };
-};
+  return (
+    <AuthContext.Provider value={{ user, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuthContext() {
+  return useContext(AuthContext);
+}
